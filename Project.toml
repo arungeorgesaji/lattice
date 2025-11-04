@@ -1,0 +1,6 @@
+name = "Lattice"
+uuid = "fe356c0f-7f20-4673-b63f-34bd49dc17a0"  
+authors = ["Arun George Saji <arungeorgesaji@gmail.com>"]
+version = "1.0.0"
+
+[deps]
