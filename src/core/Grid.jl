@@ -6,6 +6,7 @@ struct Grid{T, N}
 end
 
 Base.size(g::Grid) = size(g.data)
+Base.size(g::Grid, d::Int) = size(g.data, d)
 Base.getindex(g::Grid, I...) = g.data[I...]
 Base.IndexStyle(::Type{<:Grid}) = IndexStyle(Array)
 Base.broadcastable(g::Grid) = g
