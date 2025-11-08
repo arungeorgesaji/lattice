@@ -1,6 +1,6 @@
 module NN
 
-using ..Core: Grid
+using ..Core: Grid, zeros_grid, ones_grid, random_grid, transform, convolve
 
 include("nn/layers/basic.jl")
 include("nn/layers/advanced.jl") 
