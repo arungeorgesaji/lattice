@@ -1,6 +1,6 @@
-using Test, Lattice
+using Test, Lattice, Lattice.Domains.NN
 
-@testset "Neural Networks - Expanded" begin
+@testset "Neural Networks" begin
     @testset "Basic Layers" begin
         dense = Lattice.NN.DenseLayer(3, 2)
         input = Lattice.Grid([1.0 2.0 3.0]')  

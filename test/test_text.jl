@@ -1,4 +1,4 @@
-using Test, Lattice
+using Test, Lattice, Lattice.Domains.TextRep
 
 @testset "Text Domain" begin
     test_text = "hello"

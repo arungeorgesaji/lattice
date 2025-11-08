@@ -20,7 +20,7 @@ function update!(optimizer::SGD, param::Grid, grad::Grid)
     end
 end
 
-struct Adam <: Optimizer
+mutable struct Adam <: Optimizer
     lr::Float64
     beta1::Float64
     beta2::Float64

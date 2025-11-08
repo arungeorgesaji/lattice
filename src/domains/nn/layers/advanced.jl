@@ -1,3 +1,5 @@
+using LogExpFunctions
+
 struct RNNLayer
     W_xh::Grid  
     W_hh::Grid    
@@ -14,17 +16,23 @@ end
 
 function (layer::RNNLayer)(input::Grid, hidden::Grid=zeros_grid(layer.hidden_size, 1))
     seq_length = size(input, 2)
-    outputs = []
+    outputs = Grid[]
     current_hidden = hidden
     
     for t in 1:seq_length
-        x_t = Grid(input.data[:, t:t])  
+        x_t = Grid(reshape(input.data[:, t], (size(input, 1), 1)))  
         h_new = tanh(layer.W_xh * x_t + layer.W_hh * current_hidden + layer.b_h)
         push!(outputs, h_new)
         current_hidden = h_new
     end
     
     return outputs, current_hidden
+end
+
+function softmax(grid::Grid)
+    data = grid.data
+    exps = exp.(data .- maximum(data, dims=1))
+    Grid(exps ./ sum(exps, dims=1))
 end
 
 struct AttentionLayer

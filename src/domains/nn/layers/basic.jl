@@ -39,7 +39,18 @@ function (layer::ConvLayer)(input::Grid)
                        for fm in feature_maps]
     end
     
-    stacked = cat([fm.data for fm in feature_maps]..., dims=3)
+    if isempty(feature_maps)
+        return input
+    end
+    
+    h, w = size(feature_maps[1])
+    c = length(feature_maps)
+    
+    stacked = zeros(eltype(input), h, w, c)
+    for (ch, fm) in enumerate(feature_maps)
+        stacked[:, :, ch] = fm.data
+    end
+    
     biased = stacked .+ reshape(layer.biases.data, 1, 1, :)
     
     relu(Grid(biased))
