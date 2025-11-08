@@ -1,21 +1,29 @@
 function convolve(grid::Grid, kernel::Grid)
-    data = grid.data
-    k = kernel.data
-    k_height, k_width = size(k)
-    g_height, g_width = size(data)
-    
-    out_height = g_height - k_height + 1
-    out_width = g_width - k_width + 1
-    result = zeros(eltype(data), out_height, out_width)
-    
-    for i in 1:out_height
-        for j in 1:out_width
-            region = data[i:i+k_height-1, j:j+k_width-1]
-            result[i, j] = sum(region .* k)
+    if ndims(grid) == 3
+        h, w, c = size(grid)
+        kh, kw = size(kernel)
+        out_h, out_w = h - kh + 1, w - kw + 1
+        
+        result = zeros(eltype(grid), out_h, out_w)
+        for ch in 1:c
+            for i in 1:out_h, j in 1:out_w
+                region = grid.data[i:i+kh-1, j:j+kw-1, ch]
+                result[i, j] += sum(region .* kernel.data)
+            end
         end
+        return Grid(result)
+    else
+        h, w = size(grid)
+        kh, kw = size(kernel)
+        out_h, out_w = h - kh + 1, w - kw + 1
+        
+        result = zeros(eltype(grid), out_h, out_w)
+        for i in 1:out_h, j in 1:out_w
+            region = grid.data[i:i+kh-1, j:j+kw-1]
+            result[i, j] = sum(region .* kernel.data)
+        end
+        return Grid(result)
     end
-    
-    return Grid(result)
 end
 
 function blur_kernel(size=3)

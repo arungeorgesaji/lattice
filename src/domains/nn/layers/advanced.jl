@@ -21,7 +21,12 @@ function (layer::RNNLayer)(input::Grid, hidden::Grid=zeros_grid(layer.hidden_siz
     
     for t in 1:seq_length
         x_t = Grid(reshape(input.data[:, t], (size(input, 1), 1)))  
-        h_new = tanh(layer.W_xh * x_t + layer.W_hh * current_hidden + layer.b_h)
+        
+        linear_combo = Grid(layer.W_xh.data * x_t.data + 
+                           layer.W_hh.data * current_hidden.data + 
+                           layer.b_h.data)
+        h_new = tanh(linear_combo)
+        
         push!(outputs, h_new)
         current_hidden = h_new
     end
@@ -49,15 +54,17 @@ function AttentionLayer(hidden_size::Int)
 end
 
 function (layer::AttentionLayer)(query::Grid, keys::Grid, values::Grid)
-    Q = layer.W_q * query
-    K = layer.W_k * keys
-    V = layer.W_v * values
+    Q_data = layer.W_q.data * query.data      
+    K_data = layer.W_k.data * keys.data       
+    V_data = layer.W_v.data * values.data   
     
-    scores = Q.data' * K.data
-    weights = softmax(Grid(scores))
+    scores = Q_data' * K_data               
+    weights = softmax(Grid(scores))           
     
-    context = V * weights
-    return context, weights
+    context_data = V_data * weights.data'     
+    context = Grid(context_data)
+    
+    return context, Grid(weights.data')
 end
 
 struct BatchNorm

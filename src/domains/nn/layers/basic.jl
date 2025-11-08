@@ -13,7 +13,7 @@ end
 function (layer::DenseLayer)(input::Grid)
     result = layer.weights.data * input.data .+ layer.biases.data
     Grid(result)
-end
+end 
 
 struct ConvLayer
     kernels::Vector{Grid}
