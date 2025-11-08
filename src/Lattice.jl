@@ -1,23 +1,20 @@
 module Lattice
 
-include("core.jl")
-include("images.jl")
-include("text.jl")
-include("io.jl")
-include("domains/nn.jl")
-
-using .Core
-using .Images
-using .Text
-using .IO
-using .NN
-
 using Reexport
 
+include("core.jl")
+include("io.jl")
+include("domains.jl")
+
+using .Core
+using .IO
+using .Domains
+
 @reexport using .Core
-@reexport using .Images
-@reexport using .Text
 @reexport using .IO
-@reexport using .NN
+@reexport using .Domains
+@reexport using .Domains.Images
+@reexport using .Domains.TextRep
+@reexport using .Domains.NN
 
 end

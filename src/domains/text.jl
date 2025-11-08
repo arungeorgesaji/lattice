@@ -1,3 +1,8 @@
+module TextRep
+
+using ...Core: Grid
+using LinearAlgebra: dot, norm
+
 function text_to_grid(text::String; method=:one_hot, vocab=nothing)
     if method == :one_hot
         return _text_to_one_hot(text, vocab)
@@ -114,4 +119,8 @@ function generate_text(seed::String, length::Int; temperature=0.5)
         current *= next_char
     end
     return current
+end
+
+export text_to_grid, grid_to_text, text_sliding_window, text_similarity, generate_text
+
 end

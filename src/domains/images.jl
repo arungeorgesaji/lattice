@@ -1,3 +1,7 @@
+module Images
+
+using ...Core: Grid, convolve, blur_kernel, sharpen_kernel, edge_detection_kernel
+
 using Images, FileIO
 
 function load_image(path::String)::Grid
@@ -30,4 +34,8 @@ end
 function edge_detect_image(grid::Grid)
     kernel = edge_detection_kernel()
     convolve(grid, kernel)
+end
+
+export load_image, save_image, blur_image, sharpen_image, edge_detect_image
+
 end
