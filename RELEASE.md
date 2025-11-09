@@ -43,25 +43,54 @@ julia examples/example_name.jl
 
 ### Components
 
-#### Neural Network Layers
-- DenseLayer, ConvLayer, RNNLayer, AttentionLayer
-- MaxPool, GlobalAvgPool
-- Activation functions: relu, sigmoid, tanh, softplus
+#### Core 
 
-#### Optimizers
-- SGD with momentum
-- Adam optimizer
+- Grid — Base data abstraction supporting N-dimensional arrays
+- Arithmetic, transformation, and mapping operations 
+- Broadcasting and iteration support
+- Grid creation helpers: **zeros_grid**, **ones_grid**, **random_grid**
 
-#### Loss Functions
-- MSE, Binary Cross Entropy, Categorical Cross Entropy, Huber Loss
+#### I/O 
 
-#### Image Operations
-- Blur, edge detection, custom convolution
-- Supports `:valid` and `:same` convolution modes
+- **save_grid**, **load_grid** — Binary serialization
+- **save_grid_text**, **load_grid_text** — Human-readable text serialization
 
-#### Physics Simulations
-- Fluid dynamics with velocity and density fields
-- Heat diffusion
-- Wave propagation
-- Particle systems with gravity
-- Cellular automata (Game of Life)
+#### Neural Networks
+
+- Layers: **DenseLayer**, **ConvLayer**, **RNNLayer**, **AttentionLayer**, **MaxPool**, **GlobalAvgPool**
+- Activations: **relu**, **sigmoid**, **tanh**, **softplus**
+- Loss Functions: **mse_loss**, **binary_cross_entropy**, **categorical_cross_entropy**, **huber_loss**
+- Optimizers: **SGD** (momentum), **Adam** 
+- Utilities: **Sequential**, **get_parameters**, **count_parameters** 
+
+#### Image Operations 
+
+- Blur, edge detection, and custom convolution 
+- Supports convolution modes **:valid** and **:same**
+- Visualization tools: **show_ascii**, **show_comparison**
+
+#### Audio Processing 
+
+- Sine wave generation, normalization, gain control 
+- Feature extraction: RMS energy, zero-crossing rate 
+- Compatible with **Grid** operations and transformations
+
+#### Text processing
+
+- Character and one-hot encoding 
+- Sliding window generation for sequence data 
+- Text-to-grid and grid-to-text conversion 
+- Similarity scoring between text grids 
+
+#### Physics Simulations 
+
+- **Fluid Dynamics**: Density and velocity field simulation 
+- **Heat Diffusion**: Temperature propagation over time 
+- **Wave Propagation**: Basic wave equation solver 
+- **Particle Systems**: Gravity-based particle simulation 
+- **Cellular Automata**: Game of Life and custom rule support 
+
+### Visualization 
+
+- ASCII renderers for console-based visualization 
+- Comparative visual outputs for transformations 
