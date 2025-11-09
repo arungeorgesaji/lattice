@@ -13,6 +13,7 @@ Lattice provides a unified `Grid` abstraction that represents multi-dimensional 
 - **Image Processing**: Convolution, edge detection, blurring, and filtering operations
 - **Audio Processing**: Waveform generation, normalization, gain control, and feature extraction
 - **Text Processing**: Character and one-hot encoding, sliding windows, and similarity metrics
+- **Physics Simulation**: Fluid dynamics, heat diffusion, particle systems, and cellular automata
 - **File I/O**: Binary and text-based serialization for grid data
 - **Visualization**: ASCII rendering and plotting utilities
 
@@ -59,7 +60,7 @@ end
 ### Neural Networks
 
 ```julia
-using Lattice.NN
+using Lattice
 
 # Build a sequential model
 model = Lattice.NN.Sequential(
@@ -134,7 +135,7 @@ Use `:same` when building neural networks or when you need consistent dimensions
 ### Audio Processing
 
 ```julia
-using Lattice.Audio
+using Lattice
 
 # Generate audio
 sine_wave = Lattice.Audio.generate_sine_wave(440.0, duration=1.0, sample_rate=44100)
@@ -151,7 +152,7 @@ zero_crossings = Lattice.Audio.zero_crossing_rate(sine_wave)
 ### Text Processing
 
 ```julia
-using Lattice.Domains.TextRep
+using Lattice
 
 # Character encoding
 text = "hello world"
@@ -169,6 +170,32 @@ windows = Lattice.text_sliding_window(text, window_size=5)
 grid1 = Lattice.text_to_grid("hello", method=:character)
 grid2 = Lattice.text_to_grid("hello", method=:character)
 similarity = Lattice.text_similarity(grid1, grid2)  # Returns 1.0
+```
+
+### Physics Simulation
+
+```julia
+using Lattice
+
+# Fluid dynamics
+fluid = Lattice.Physics.FluidSimulation(50, 50)
+Lattice.Physics.add_density!(fluid, 25, 25, 1.0)
+diffused = Lattice.Physics.diffuse!(fluid.density, 0.1, 0.1)
+
+# Heat diffusion
+temperature = Lattice.zeros_grid(100, 100)
+temperature.data[50, 50] = 100.0
+cooled = Lattice.Physics.heat_diffusion(temperature, diffusivity=0.1, steps=50)
+
+# Particle systems with gravity
+system = Lattice.Physics.ParticleSystem(100, width=50, height=50)
+Lattice.Physics.step!(system, dt=0.1)
+particle_grid = Lattice.Physics.particles_to_grid(system)
+
+# Cellular automata (Conway's Game of Life)
+initial = Lattice.zeros_grid(20, 20)
+initial.data[10, 9:11] .= 1.0  # Horizontal line (blinker)
+evolved = Lattice.Physics.game_of_life(initial, generations=10)
 ```
 
 ### File I/O

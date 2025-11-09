@@ -17,5 +17,6 @@ using .Domains
 @reexport using .Domains.TextRep
 @reexport using .Domains.Audio
 @reexport using .Domains.NN
+@reexport using .Domains.Physics
 
 end

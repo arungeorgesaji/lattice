@@ -11,7 +11,8 @@ test_files = [
     "test_text.jl",
     "test_nn.jl",
     "test_visualization.jl",
-    "test_audio.jl"
+    "test_audio.jl",
+    "test_physics.jl"
 ]
 
 for file in test_files
