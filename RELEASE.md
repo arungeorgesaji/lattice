@@ -20,6 +20,7 @@ Watch the demo video to see a quick demo of some basic features without having t
 - **Audio Processing**: Waveform generation and feature extraction
 - **Text Processing**: Encoding methods and similarity metrics
 - **Physics Simulation**: Fluid dynamics, heat diffusion, particle systems, and cellular automata
+- **Computer Graphics**: 2D/3D shape generation, ray marching, transformations, and morphological operations
 - **File I/O**: Binary and text-based grid serialization
 
 ### Installation
@@ -89,6 +90,15 @@ julia examples/example_name.jl
 - **Wave Propagation**: Basic wave equation solver 
 - **Particle Systems**: Gravity-based particle simulation 
 - **Cellular Automata**: Game of Life and custom rule support 
+
+#### Computer Graphics 
+
+- **2D Shape Generation**: Circles, rectangles, lines with customizable parameters 
+- **3D Voxel Operations**: Sphere and cube generation in 3D space
+- **Ray Marching**: Signed distance field rendering for 3D shapes
+- **Transformations**: Rotation and scaling operations 
+- **Pattern Generation**: Checkerboards, gradients, and procedural textures 
+- **Morphological Operations**: Dilation and erosion for shape processing
 
 ### Visualization 
 

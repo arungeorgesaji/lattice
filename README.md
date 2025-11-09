@@ -14,6 +14,7 @@ Lattice provides a unified `Grid` abstraction that represents multi-dimensional 
 - **Audio Processing**: Waveform generation, normalization, gain control, and feature extraction
 - **Text Processing**: Character and one-hot encoding, sliding windows, and similarity metrics
 - **Physics Simulation**: Fluid dynamics, heat diffusion, particle systems, and cellular automata
+- **Computer Graphics**: 2D/3D shape generation, ray marching, transformations, and morphological operations
 - **File I/O**: Binary and text-based serialization for grid data
 - **Visualization**: ASCII rendering and plotting utilities
 
@@ -196,6 +197,41 @@ particle_grid = Lattice.Physics.particles_to_grid(system)
 initial = Lattice.zeros_grid(20, 20)
 initial.data[10, 9:11] .= 1.0  # Horizontal line (blinker)
 evolved = Lattice.Physics.game_of_life(initial, generations=10)
+```
+
+### Computer Graphics
+
+```julia
+using Lattice
+
+# 2D Shape Generation
+circle = Lattice.Graphics.create_circle(radius=5, center_x=10, center_y=10, grid_size=(20, 20))
+rectangle = Lattice.Graphics.create_rectangle(width=8, height=6, start_x=5, start_y=5, grid_size=(20, 20))
+line = Lattice.Graphics.create_line(x1=2, y1=2, x2=18, y2=18, grid_size=(20, 20))
+
+# 3D Voxel Operations
+voxel_sphere = Lattice.Graphics.create_sphere_voxel(radius=4, center=(8, 8, 8), grid_size=(16, 16, 16))
+voxel_cube = Lattice.Graphics.create_cube_voxel(size=5, start=(3, 3, 3), grid_size=(16, 16, 16))
+
+# Ray Marching for 3D Rendering
+sphere_render = Lattice.Graphics.ray_march_sdf(Lattice.Graphics.sphere_sdf, resolution=64, max_distance=3.0)
+box_render = Lattice.Graphics.ray_march_sdf(Lattice.Graphics.box_sdf, resolution=64, max_distance=3.0)
+
+# 2D Transformations
+rotated = Lattice.Graphics.rotate_2d(circle, angle=π/4)  # 45 degrees
+scaled = Lattice.Graphics.scale_2d(circle, scale_x=1.5, scale_y=1.5)
+
+# Pattern Generation
+checkerboard = Lattice.Graphics.create_checkerboard(size=16, square_size=4)
+gradient = Lattice.Graphics.create_gradient(size=16, direction=:vertical)
+
+# Morphological Operations
+dilated = Lattice.Graphics.dilate(circle, kernel_size=3)
+eroded = Lattice.Graphics.erode(circle, kernel_size=3)
+
+# Visualization
+Lattice.show_ascii(circle)
+Lattice.show_comparison(circle, rotated, titles=["Original", "Rotated"])
 ```
 
 ### File I/O
