@@ -15,6 +15,7 @@ using .Domains
 @reexport using .Domains
 @reexport using .Domains.Images
 @reexport using .Domains.TextRep
+@reexport using .Domains.Audio
 @reexport using .Domains.NN
 
 end
