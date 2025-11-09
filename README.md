@@ -1,6 +1,6 @@
 # Lattice
 
-A powerful Julia-based grid computation engine for unified data processing across multiple domains including neural networks, image processing, audio analysis, and text processing.
+A Julia-based grid computation framework integrating AI, scientific computing, and data processing in a single system.
 
 ## Overview
 
