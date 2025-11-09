@@ -1,6 +1,6 @@
 module Images
 
-using ...Core: Grid, convolve, blur_kernel, sharpen_kernel, edge_detection_kernel
+using ...GridCore: Grid, convolve, blur_kernel, sharpen_kernel, edge_detection_kernel
 
 using Images, FileIO
 

@@ -1,5 +1,3 @@
-using LogExpFunctions
-
 struct RNNLayer
     W_xh::Grid  
     W_hh::Grid    

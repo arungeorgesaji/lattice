@@ -1,6 +1,6 @@
 module IO
 
-using ..Core: Grid
+using ..GridCore: Grid
 
 include("io/fileio.jl")
 include("io/visualization.jl")

@@ -6,11 +6,11 @@ include("core.jl")
 include("io.jl")
 include("domains.jl")
 
-using .Core
+using .GridCore
 using .IO
 using .Domains
 
-@reexport using .Core
+@reexport using .GridCore
 @reexport using .IO
 @reexport using .Domains
 @reexport using .Domains.Images

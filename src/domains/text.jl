@@ -1,6 +1,6 @@
 module TextRep
 
-using ...Core: Grid
+using ...GridCore: Grid
 using LinearAlgebra: dot, norm
 
 function text_to_grid(text::String; method=:one_hot, vocab=nothing)

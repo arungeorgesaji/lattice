@@ -1,4 +1,4 @@
-module Core
+module GridCore 
 
 include("core/Grid.jl")
 include("core/operations.jl")
