@@ -118,6 +118,19 @@ Lattice.show_ascii(image)
 Lattice.show_comparison(image, blurred)
 ```
 
+## Convolution Modes
+
+Lattice supports two convolution modes:
+
+- **`:valid`** (default): Output size is `(h - kh + 1) × (w - kw + 1)`. No padding applied.
+- **`:same`**: Output size matches input. Edges are padded by replicating border values.
+```julia
+result_valid = Lattice.convolve(image, kernel, mode=:valid)  # Smaller output
+result_same = Lattice.convolve(image, kernel, mode=:same)    # Same size as input
+```
+
+Use `:same` when building neural networks or when you need consistent dimensions across processing steps.
+
 ### Audio Processing
 
 ```julia
