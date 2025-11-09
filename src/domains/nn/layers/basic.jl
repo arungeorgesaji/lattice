@@ -32,7 +32,29 @@ function ConvLayer(input_channels::Int, output_channels::Int, kernel_size::Int;
 end
 
 function (layer::ConvLayer)(input::Grid)
-    feature_maps = [convolve(input, k) for k in layer.kernels]
+    data = input.data
+    
+    if ndims(data) == 2
+        h, w = size(data)
+        data = reshape(data, h, w, 1)
+        input = Grid(data)
+    end
+    
+    h_in, w_in, c_in = size(data)
+    
+    feature_maps = []
+    for kernel in layer.kernels
+        channel_map = zeros(h_in - size(kernel.data, 1) + 1, 
+                           w_in - size(kernel.data, 2) + 1)
+        
+        for ch in 1:c_in
+            input_channel = Grid(data[:, :, ch])
+            conv_result = convolve(input_channel, kernel, mode=:valid)
+            channel_map .+= conv_result.data
+        end
+        
+        push!(feature_maps, Grid(channel_map))
+    end
     
     if layer.stride > 1
         feature_maps = [Grid(fm.data[1:layer.stride:end, 1:layer.stride:end]) 

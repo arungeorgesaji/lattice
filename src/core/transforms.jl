@@ -1,4 +1,4 @@
-function convolve(grid::Grid, kernel::Grid; mode::Symbol=:same)
+function convolve(grid::Grid, kernel::Grid; mode::Symbol=:valid)
     data = grid.data
     kh, kw = size(kernel.data)
     pad_h, pad_w = div(kh, 2), div(kw, 2)
