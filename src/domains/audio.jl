@@ -1,6 +1,7 @@
 module Audio
 
 using ...GridCore: Grid, random_grid, zeros_grid, transform, map_grid
+using Statistics: mean 
 using WAV, FFTW 
 
 function load_audio(path::String)::Grid

@@ -23,17 +23,15 @@ end
 
 function blur_image(grid::Grid, kernel_size=3)
     kernel = blur_kernel(kernel_size)
-    convolve(grid, kernel)
+    convolve(grid, kernel; mode=:same)
 end
 
 function sharpen_image(grid::Grid)
-    kernel = sharpen_kernel()
-    convolve(grid, kernel)
+    convolve(grid, sharpen_kernel(); mode=:same)
 end
 
 function edge_detect_image(grid::Grid)
-    kernel = edge_detection_kernel()
-    convolve(grid, kernel)
+    convolve(grid, edge_detection_kernel(); mode=:same)
 end
 
 export load_image, save_image, blur_image, sharpen_image, edge_detect_image

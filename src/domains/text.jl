@@ -98,10 +98,15 @@ end
 function text_similarity(grid1::Grid, grid2::Grid)
     v1 = vec(grid1.data)
     v2 = vec(grid2.data)
+
+    min_len = min(length(v1), length(v2))
+    v1 = v1[1:min_len]
+    v2 = v2[1:min_len]
+
     dot_product = dot(v1, v2)
     norm1 = norm(v1)
     norm2 = norm(v2)
-    return norm1 == 0 || norm2 == 0 ? 0.0 : dot_product / (norm1 * norm2)
+    return (norm1 == 0 || norm2 == 0) ? 0.0 : dot_product / (norm1 * norm2)
 end
 
 function generate_text(seed::String, length::Int; temperature=0.5)

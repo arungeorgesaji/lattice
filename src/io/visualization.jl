@@ -2,21 +2,25 @@ using Plots
 
 function show_ascii(grid::Grid; chars=" ░▒▓█", threshold=nothing)
     data = grid.data
-    chars_vec = collect(chars)  
-    
+    chars_vec = collect(chars)
+
     if threshold === nothing
         min_val, max_val = extrema(data)
-        normalized = (data .- min_val) ./ (max_val - min_val)
+        if min_val == max_val
+            normalized = fill(1.0, size(data))
+        else
+            normalized = (data .- min_val) ./ (max_val - min_val)
+        end
     else
         normalized = data .>= threshold
     end
 
     char_array = map(n -> chars_vec[clamp(floor(Int, n * length(chars_vec)) + 1, 1, length(chars_vec))], normalized)
-    
+
     for i in 1:size(char_array, 1)
         println(join(char_array[i, :], ""))
     end
-    
+
     return nothing
 end
 
