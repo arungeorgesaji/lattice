@@ -1,6 +1,6 @@
 # Lattice
 
-A Julia-based grid computation framework integrating AI, scientific computing, and data processing in a single system.
+A Julia-based grid computation framework/library integrating AI, scientific computing, and data processing in a single system.
 
 ## Overview
 
