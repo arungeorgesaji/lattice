@@ -1,5 +1,3 @@
-# Release Notes
-
 ### Overview
 A Julia-based grid computation framework integrating AI, scientific computing, and data processing in a single system.
 
@@ -8,7 +6,7 @@ A Julia-based grid computation framework integrating AI, scientific computing, a
 Watch the demo video to see a quick demo of some basic features without having to download it for yourself
 
 <p align="center">
-  <a href="">
+  <a href="https://hc-cdn.hel1.your-objectstorage.com/s/v3/ca4b2bebbf756e058bb6aa95298b60dcbcc1fd2d_lattice-demo.mp4">
     <img src="https://dummyimage.com/800x450/000/fff&text=▶+Watch+Lattice+Demo" alt="Watch the Lattice Demo Video" width="600"/>
   </a>
 </p>
